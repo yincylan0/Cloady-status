@@ -5,12 +5,12 @@ RUN apk upgrade --no-cache \
 WORKDIR /app
 
 FROM base AS test
-COPY kerit_status.py poll.js test_kerit_status.py ./
+COPY cloady_status.py poll.js test_cloady_status.py ./
 RUN python3 -I -B -m unittest -v
 
 FROM base AS final
-COPY --from=test /app/kerit_status.py /app/kerit_status.py
+COPY --from=test /app/cloady_status.py /app/cloady_status.py
 COPY --from=test /app/poll.js /app/poll.js
 USER 10001:10001
 EXPOSE 8000
-CMD ["python3", "-I", "-B", "-u", "kerit_status.py"]
+CMD ["python3", "-I", "-B", "-u", "cloady_status.py"]
