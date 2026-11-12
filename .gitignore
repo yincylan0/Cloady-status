@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+*.bak
+*~
