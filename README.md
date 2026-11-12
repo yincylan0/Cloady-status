@@ -8,9 +8,9 @@
 
 - Repository：`yincylan0/Cloady-status`（公开仓库）
 - Branch：`main`
-- Port：`8000`
+- Port：`3000`（Cloady 默认）
 
-Dockerfile 位于仓库根目录，平台会自动使用它构建。应用监听 `PORT` 环境变量；未设置时默认使用 `8000`。健康检查端点 `/healthz` 可独立访问；这里不依赖任何特定的平台健康检查路径设置。
+Dockerfile 位于仓库根目录，平台会自动使用它构建。应用监听 `PORT` 环境变量（Cloady 默认设为 3000）；未设置时默认使用 `8000`。健康检查端点 `/healthz` 可独立访问；这里不依赖任何特定的平台健康检查路径设置。
 
 构建使用官方 `python:3.13-alpine` 镜像并通过 `apk upgrade --no-cache` 升级 OS 包。独立测试阶段运行全部 Python 单元测试，只有测试成功构建才会继续；最终镜像从更新后的 Alpine 基础阶段派生，只复制应用与轮询脚本，不包含测试文件。Alpine 使用 musl libc 而非 glibc；本应用目前不使用 pip 依赖或原生扩展，但其他依赖或运行时假设可能需要额外验证。
 
